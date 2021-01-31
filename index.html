@@ -12,6 +12,7 @@
     <div>
       <input type="text" placeholder="Ingrese id">
       <button id="btnBuscar">Buscar</button>
+      <label>Esperando para buscar</label>
     </div>
   </body>
 
@@ -32,8 +33,15 @@
 
     function searchPokemon() {
       let input = document.querySelector('input').value
-      console.log(input)
-      getPokemon(input);
+      let label = document.querySelector('label');
+      
+      if (input == "") {
+        label.innerHTML = 'Debe escribir un nombre o id';
+      }
+      else {
+        label.innerHTML = 'Pokemon encontrado';
+        getPokemon(input);
+      }
     }
 
     let button = document.querySelector('#btnBuscar');
