@@ -5,5 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Consultando una Api Publica</title>
   </head>
-  <body></body>
+  <body>
+    <h1>Hola mundo</h1>
+    <img src="#" alt="Imagen del pokemon">
+    <h2></h2>
+    <div>
+      <input type="text" placeholder="Ingrese id">
+      <button id="btnBuscar">Buscar</button>
+    </div>
+  </body>
+
+  <script>
+    function renderPokemon(respuesta) {
+      // console.log(respuesta)
+      let namePokemon = document.querySelector("h1").innerHTML = respuesta.name;
+      let imgPokemon = document.querySelector('img').src = respuesta.sprites.front_default;
+      let idPokemon = document.querySelector('h2').innerHTML = respuesta.id;
+      // console.log(imgPokemon)
+    }
+
+    function getPokemon(idPokemon) {
+      fetch(`https://pokeapi.co/api/v2/pokemon/${idPokemon}`)
+        .then((respuesta) => respuesta.json())
+        .then((respuesta) => renderPokemon(respuesta));
+    }
+
+    function searchPokemon() {
+      let input = document.querySelector('input').value
+      console.log(input)
+      getPokemon(input);
+    }
+
+    let button = document.querySelector('#btnBuscar');
+    button.addEventListener("click", searchPokemon);
+
+  </script>
 </html>
