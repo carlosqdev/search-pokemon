@@ -16,45 +16,5 @@
     </div>
   </body>
 
-  <script>
-    let label = document.querySelector('label');
-
-    const renderPokemon = (response) => {
-      let namePokemon = document.querySelector("h1").innerHTML = response.name;
-      let imgPokemon = document.querySelector('img').src = response.sprites.front_default;
-      let idPokemon = document.querySelector('h2').innerHTML = response.id;
-      label.innerHTML = 'Pokemon encontrado'
-    }
-
-    function getPokemon(idPokemon) {
-      fetch(`https://pokeapi.co/api/v2/pokemon/${idPokemon}`)
-      .then(function(response) {
-        if(response.ok) {
-          response.json()
-          .then((response) => renderPokemon(response));
-        } else {
-          label.innerHTML = 'Pokemon no encontrado id o nombre no exite'
-        }
-      })
-      .catch(function(error) {
-        label.innerHTML = `Hubo un problema con la petición Fetch:${error.message}`;
-      });
-    }
-
-    function searchPokemon() {
-      let input = document.querySelector('input').value
-
-      if (input == "") {
-        label.innerHTML = 'Debe escribir un nombre o id';
-      }
-      else {
-        label.innerHTML = 'Pokemon encontrado';
-        getPokemon(input);
-      }
-    }
-
-    let button = document.querySelector('#btnBuscar');
-    button.addEventListener("click", searchPokemon);
-
-  </script>
+  <script src="bundle.js"></script>
 </html>
