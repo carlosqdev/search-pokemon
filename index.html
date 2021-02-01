@@ -17,24 +17,33 @@
   </body>
 
   <script>
-    function renderPokemon(respuesta) {
-      // console.log(respuesta)
-      let namePokemon = document.querySelector("h1").innerHTML = respuesta.name;
-      let imgPokemon = document.querySelector('img').src = respuesta.sprites.front_default;
-      let idPokemon = document.querySelector('h2').innerHTML = respuesta.id;
-      // console.log(imgPokemon)
+    let label = document.querySelector('label');
+
+    const renderPokemon = (response) => {
+      let namePokemon = document.querySelector("h1").innerHTML = response.name;
+      let imgPokemon = document.querySelector('img').src = response.sprites.front_default;
+      let idPokemon = document.querySelector('h2').innerHTML = response.id;
+      label.innerHTML = 'Pokemon encontrado'
     }
 
     function getPokemon(idPokemon) {
       fetch(`https://pokeapi.co/api/v2/pokemon/${idPokemon}`)
-        .then((respuesta) => respuesta.json())
-        .then((respuesta) => renderPokemon(respuesta));
+      .then(function(response) {
+        if(response.ok) {
+          response.json()
+          .then((response) => renderPokemon(response));
+        } else {
+          label.innerHTML = 'Pokemon no encontrado id o nombre no exite'
+        }
+      })
+      .catch(function(error) {
+        label.innerHTML = `Hubo un problema con la petición Fetch:${error.message}`;
+      });
     }
 
     function searchPokemon() {
       let input = document.querySelector('input').value
-      let label = document.querySelector('label');
-      
+
       if (input == "") {
         label.innerHTML = 'Debe escribir un nombre o id';
       }
