@@ -4,16 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Consultando una Api Publica</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <h1>Hola mundo</h1>
-    <img src="#" alt="Imagen del pokemon">
-    <h2></h2>
-    <div>
-      <input type="text" placeholder="Ingrese id">
-      <button id="btnBuscar">Buscar</button>
-      <label>Esperando para buscar</label>
-    </div>
+    <main class="main">
+      <div class="wrapper">
+        <h1 class="namePokemon">Pokemones</h1>
+        <img class="imgPokemon" src="./pokeball.png" alt="Imagen del pokemon">
+        <h2 class="idPokemon"></h2>
+        <section class="search">
+          <input class="searchPokemon" type="text" placeholder="Ingrese id">
+          <button class="button" id="btnBuscar">Buscar</button>
+          <label class="message">Esperando para buscar</label>
+        </section>
+      </div>
+    </main>
   </body>
 
   <script src="bundle.js"></script>
